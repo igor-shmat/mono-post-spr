@@ -1,0 +1,10 @@
+databaseChangeLog:
+  - include:
+      file: /schema/creatr_mono_post_schema.sql
+      relativeToChangelogFile: true
+
+  - includeAll:
+#      file: /table_structure/create_all_tables.sql
+      path: table_structure
+      relativeToChangelogFile: true
+

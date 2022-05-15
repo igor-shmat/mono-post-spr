@@ -1,0 +1,11 @@
+version: '3'
+services:
+  db:
+    container_name: mono_post
+    image: postgres:13.2
+    environment:
+      - POSTGRES_DB=mono_post
+      - POSTGRES_USER=mono_post_user
+      - POSTGRES_PASSWORD=mono_post_pass
+    ports:
+      - '12345:5432'
