@@ -1,0 +1,306 @@
+{
+	"info": {
+		"_postman_id": "29a24d69-9451-4a89-b572-50454abc0103",
+		"name": "MonoPost",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15136344"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "CreateUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"test\",\r\n    \"secondName\": \"testov\",\r\n    \"patronymicName\": \"testovich\",\r\n    \"phoneNumber\": \"+380963468123\",\r\n    \"email\": \"qweewq@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "UpdateUser",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"firstName\": \"ф11ф\",\r\n    \"secondName\": \"вввввввввв\",\r\n    \"patronymicName\": \"ссссссссссс\",\r\n    \"phoneNumber\": \"+380666111111\",\r\n    \"email\": \"qwe@gmail.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user/update/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"update",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DeleteUser",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/user/delete/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"delete",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserByID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/user/readById/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"readById",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllUsers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/user/readAllUsers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"readAllUsers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetUserByPhoneNumber",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/user/readByPhoneNumber/156465",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"user",
+								"readByPhoneNumber",
+								"156465"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Office",
+			"item": [
+				{
+					"name": "CreateOffice",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"address\": \"Пушкина колотушкина\",\r\n    \"description\": \"хы\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/office/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"office",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllOffices",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/office/readAllOffices",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"office",
+								"readAllOffices"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Parcel",
+			"item": [
+				{
+					"name": "CreateParcel",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"userId\": \"10000001\",\r\n    \"senderOfficeId\":\"10001\",\r\n    \"receiverOfficeId\":\"10002\",\r\n    \"receiverPhoneNumber\":\"+380559687563\",\r\n    \"receiverFirstName\":\"ыы\",\r\n    \"receiverSecondName\":\"гг\",\r\n    \"receiverPatronymicName\":\"вп\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8081/api/parcel/create",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"parcel",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllParcels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/parcel/readAllParcels",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"parcel",
+								"readAllParcels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAllSenderParcels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8081/api/parcel/findParcelBySenderPhoneNumber/+380666111111",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8081",
+							"path": [
+								"api",
+								"parcel",
+								"findParcelBySenderPhoneNumber",
+								"+380666111111"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
