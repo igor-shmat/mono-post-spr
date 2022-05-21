@@ -8,6 +8,8 @@ import lombok.Data;
 @Builder
 public class OfficeResponse {
 
+    private Long officeId;
+
     private String address;
 
     private String description;

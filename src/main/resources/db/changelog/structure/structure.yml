@@ -4,7 +4,6 @@ databaseChangeLog:
       relativeToChangelogFile: true
 
   - includeAll:
-#      file: /table_structure/create_all_tables.sql
       path: table_structure
       relativeToChangelogFile: true
 

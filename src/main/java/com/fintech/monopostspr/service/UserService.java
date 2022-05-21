@@ -9,6 +9,7 @@ import com.fintech.monopostspr.exceptions.СreateInDbException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -23,27 +24,35 @@ public class UserService {
         if (userFromDB.isEmpty()) {
             return userRepository.save(userConverter.convertToEntity(userRequest));
         }
-        if (userFromDB.get().getEmail().equals(userRequest.getEmail()) && userFromDB.get().getPhoneNumber().equals(userRequest.getPhoneNumber())){
+        if (userFromDB.get().getEmail().equals(userRequest.getEmail()) && userFromDB.get().getPhoneNumber().equals(userRequest.getPhoneNumber())) {
             throw new СreateInDbException("User with email : " + userFromDB.get().getEmail() + " and phone number : " + userFromDB.get().getPhoneNumber() + " already exists");
-        }else if (userFromDB.get().getEmail().equals(userRequest.getEmail())) {
+        } else if (userFromDB.get().getEmail().equals(userRequest.getEmail())) {
             throw new СreateInDbException("User with email : " + userFromDB.get().getEmail() + " already exists");
         } else {
             throw new СreateInDbException("User with phone number : " + userFromDB.get().getPhoneNumber() + " already exists");
         }
     }
 
-    public User update(UserRequest userRequest, Long id){
+    public User update(UserRequest userRequest, Long id) {
         findById(id);
         User user = userConverter.convertToEntity(userRequest);
         user.setPkey(id);
         return userRepository.save(user);
     }
 
-    public User findById(Long id){
+    public User findById(Long id) {
         return userRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("User was not found"));
     }
 
-    public void delete(Long id){
+    public User findByPhoneNumber(String phone) {
+        return userRepository.findByPhoneNumber(phone).orElseThrow(() -> new EntityNotFoundException("User with phone number : " + phone + " does not exists"));
+    }
+
+    public List<User> findAllUsers(){
+        return userRepository.findAll();
+    }
+
+    public void delete(Long id) {
         userRepository.deleteById(id);
     }
 }

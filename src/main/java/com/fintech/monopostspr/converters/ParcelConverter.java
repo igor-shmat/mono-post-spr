@@ -10,6 +10,9 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -38,6 +41,7 @@ public class ParcelConverter {
 
     public ParcelResponse convertToParcelResponse(Parcel parcel) {
         return ParcelResponse.builder()
+                .parcelId(parcel.getPkey())
                 .userId(parcel.getUser().getPkey().toString())
                 .senderOfficeId(parcel.getSenderOffice().getPkey().toString())
                 .receiverOfficeId(parcel.getReceiverOffice().getPkey().toString())
@@ -49,5 +53,11 @@ public class ParcelConverter {
                 .createDate(parcel.getCreateDate())
                 .updateDateStatus(parcel.getUpdateDateStatus())
                 .build();
+    }
+
+    public List<ParcelResponse> convertToListParcelResponse(List<Parcel> parcels){
+        return parcels.stream().map(this::convertToParcelResponse)
+                .sorted(Comparator.comparingLong(ParcelResponse::getParcelId).reversed())
+                .collect(Collectors.toList());
     }
 }

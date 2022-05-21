@@ -9,6 +9,7 @@ import com.fintech.monopostspr.exceptions.СreateInDbException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,9 @@ public class OfficeService {
 
     public Office findById(Long id){
         return officeRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Office was not found"));
+    }
+
+    public List<Office> findAllOffices(){
+        return officeRepository.findAll();
     }
 }

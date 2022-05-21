@@ -7,6 +7,8 @@ import com.fintech.monopostspr.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/user")
 @RequiredArgsConstructor
@@ -30,8 +32,18 @@ public class UserController {
         return "User deleted successfully";
     }
 
-    @GetMapping("readById/{id}")
+    @GetMapping("/readById/{id}")
     public UserResponse readById(@PathVariable Long id){
         return userConverter.convertToUserResponse(userService.findById(id));
+    }
+
+    @GetMapping("/readByPhoneNumber/{phone}")
+    public UserResponse readByPhoneNumber(@PathVariable String phone){
+        return userConverter.convertToUserResponse(userService.findByPhoneNumber(phone));
+    }
+
+    @GetMapping("/readAllUsers")
+    public List<UserResponse> readAllUsers (){
+        return userConverter.convertToListUserResponse(userService.findAllUsers());
     }
 }

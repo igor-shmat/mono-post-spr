@@ -13,6 +13,8 @@ import java.time.LocalDateTime;
 @Builder
 public class ParcelResponse {
 
+    private Long parcelId;
+
     private String userId;
 
     private String senderOfficeId;

@@ -5,6 +5,9 @@ import com.fintech.monopostspr.dto.response.UserResponse;
 import com.fintech.monopostspr.entity.User;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Component
 public class UserConverter {
     public User convertToEntity(UserRequest userRequest) {
@@ -25,5 +28,9 @@ public class UserConverter {
                 .phoneNumber(user.getPhoneNumber())
                 .email(user.getEmail())
                 .build();
+    }
+
+    public List<UserResponse> convertToListUserResponse(List<User> users){
+        return users.stream().map(this::convertToUserResponse).collect(Collectors.toList());
     }
 }

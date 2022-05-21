@@ -1,7 +1,9 @@
 package com.fintech.monopostspr.service;
 
 import com.fintech.monopostspr.converters.ParcelConverter;
+import com.fintech.monopostspr.dto.response.ParcelResponse;
 import com.fintech.monopostspr.entity.Notification;
+import com.fintech.monopostspr.entity.User;
 import com.fintech.monopostspr.repository.ParcelRepository;
 import com.fintech.monopostspr.dto.request.ParcelRequest;
 import com.fintech.monopostspr.entity.Parcel;
@@ -17,6 +19,7 @@ public class ParcelService {
     private final ParcelRepository parcelRepository;
     private final ParcelConverter parcelConverter;
     private final NotificationService notificationService;
+    private final UserService userService;
 
     public Parcel create(ParcelRequest parcelRequest) {
         Parcel parcel = parcelRepository.save(parcelConverter.convertToEntity(parcelRequest));
@@ -33,5 +36,14 @@ public class ParcelService {
 
     public void saveAllParcels(List<Parcel> parcels) {
         parcelRepository.saveAll(parcels);
+    }
+
+    public List<Parcel> findAllParcels(){
+        return parcelRepository.findAll();
+    }
+
+    public List<Parcel> findByPhone(String phone){
+        User user = userService.findByPhoneNumber(phone);
+        return parcelRepository.findAllByUser(user);
     }
 }
